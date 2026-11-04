@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Local speech-to-document pipeline — ContiMech</title>
+<meta name="description" content="Recorded lectures become reviewed course notes: Whisper transcription, structured notes from a small language model, a privacy pass, and publication only after a person approves.">
+<link rel="canonical" href="https://contimech.org/case-studies/local-speech-to-document-pipeline.html">
+<meta property="og:title" content="Local speech-to-document pipeline — ContiMech">
+<meta property="og:description" content="Recorded lectures become reviewed course notes: Whisper transcription, structured notes from a small language model, a privacy pass, and publication only after a person approves.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/local-speech-to-document-pipeline.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../case-studies/index.html">Cases</a> / AI · Linux · Prototype</div>
+<h1>Local speech-to-document pipeline with human approval</h1>
+<p class="lead">A pipeline that takes a finished lecture recording, transcribes it, turns the transcript into structured notes, removes personal details, and publishes the result only after the teacher approves it. Processing runs on the owner's own server.</p>
+<dl class="facts"><div><dt>Domain</dt><dd>Education, document automation</dd></div><div><dt>Stack</dt><dd>Linux server, ffmpeg, faster-whisper, small language model</dd></div><div><dt>Runs on</dt><dd>Own server, GPU with CPU fallback</dd></div><div><dt>Services</dt><dd>1.1 Prototyping · 2.3 Software</dd></div></dl>
+</div>
+<div class="prose">
+
+<h2>Task</h2>
+<p>Transcription is the easy part. After a lecture someone still has to move the file, extract the audio, transcribe it, turn spoken language into a readable structure, remove names and other personal details, prepare teaching material, get approval and publish. The pipeline was built around that whole chain, with the teacher keeping the final say.</p>
+<h2>How it works</h2>
+<ol>
+<li><strong>Capture.</strong> A finished recording is picked up and moved to the processing server.</li>
+<li><strong>Transcribe.</strong> Audio is extracted (16 kHz mono), the language is detected and faster-whisper produces a timestamped transcript.</li>
+<li><strong>Structure.</strong> A small language model and course templates turn the transcript into lecture notes and a methodological guide.</li>
+<li><strong>Sanitise.</strong> A language-model pass removes personal and sensitive details.</li>
+<li><strong>Approve and publish.</strong> The teacher reviews the result. Nothing is published before approval; approved material goes straight to the course website.</li>
+</ol>
+<figure class=""><div class="frame"><a href="../assets/img/projects/pipeline/lecture-converter-pipeline.svg" title="Open full size"><img src="../assets/img/projects/pipeline/lecture-converter-pipeline.svg" alt="Local processing pipeline in four resumable stages" loading="lazy"></a></div><figcaption>Local processing: four resumable stages from video to structured Markdown.</figcaption></figure>
+<h2>Runtime behaviour</h2>
+<p>The converter prefers GPU acceleration and falls back to CPU if CUDA or a library fails. Slower, but the result is preserved. Each stage can be resumed, so a failure late in the chain does not repeat the transcription.</p>
+<figure class=""><div class="frame"><a href="../assets/img/projects/pipeline/lecture-converter-runtime.svg" title="Open full size"><img src="../assets/img/projects/pipeline/lecture-converter-runtime.svg" alt="Runtime with GPU fast path and CPU fallback" loading="lazy"></a></div><figcaption>GPU fast path with a CPU int8 fallback.</figcaption></figure>
+
+<div class="sep"></div>
+<p class="small muted">Next case: <a href="../case-studies/hmi-control-board-communication-protocol.html">CAN interface specification: operator panel and process controller</a> · <a href="../services.html">Services</a> · <a href="../contact.html">Discuss a similar task</a></p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

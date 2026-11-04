@@ -1,0 +1,46 @@
+<svg viewBox="0 0 920 272" xmlns="http://www.w3.org/2000/svg" font-family="IBM Plex Sans Condensed, system-ui, sans-serif">
+<style>.lb{font-size:11px;fill:#68757F}.zl{font-size:10.5px;fill:#141C24}.mono{font-family:IBM Plex Mono,monospace;font-size:10.5px}.h{font-size:12.5px;fill:#141C24;font-weight:600}</style>
+<text class="h" x="95" y="26">Batch A — transit through the muffle</text>
+<rect x="95.0" y="44" width="43.7" height="36" fill="#EEF1F4" stroke="#DDE2E7"/>
+<text class="zl" x="116.9" y="66.0" text-anchor="middle">entry</text>
+<rect x="138.7" y="44" width="120.2" height="36" fill="#F7F8FA" stroke="#DDE2E7"/>
+<text class="zl" x="198.8" y="66.0" text-anchor="middle">delubrication</text>
+<rect x="258.9" y="44" width="82.0" height="36" fill="#EEF1F4" stroke="#DDE2E7"/>
+<text class="zl" x="299.9" y="66.0" text-anchor="middle">pre-heat</text>
+<rect x="340.9" y="44" width="158.5" height="36" fill="#D8EBE7" stroke="#DDE2E7"/>
+<text class="zl" x="420.1" y="66.0" text-anchor="middle">high heat</text>
+<rect x="499.4" y="44" width="240.4" height="36" fill="#EEF1F4" stroke="#DDE2E7"/>
+<text class="zl" x="619.6" y="66.0" text-anchor="middle">cooling</text>
+<rect x="739.8" y="44" width="43.7" height="36" fill="#F7F8FA" stroke="#DDE2E7"/>
+<text class="zl" x="761.6" y="66.0" text-anchor="middle">exit</text>
+<line x1="340.9" y1="40" x2="340.9" y2="150" stroke="#0E6E63" stroke-width="1.1" stroke-dasharray="3 3"/>
+<line x1="499.4" y1="40" x2="499.4" y2="150" stroke="#0E6E63" stroke-width="1.1" stroke-dasharray="3 3"/>
+<line x1="783.5" y1="40" x2="783.5" y2="176" stroke="#8A5A12" stroke-width="1.1" stroke-dasharray="3 3"/>
+<line x1="95" y1="94" x2="860" y2="94" stroke="#C7CFD6"/>
+<line x1="95.0" y1="94" x2="95.0" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="95.0" y="110" text-anchor="middle" font-size="10">0</text>
+<line x1="204.3" y1="94" x2="204.3" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="204.3" y="110" text-anchor="middle" font-size="10">20</text>
+<line x1="313.6" y1="94" x2="313.6" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="313.6" y="110" text-anchor="middle" font-size="10">40</text>
+<line x1="422.9" y1="94" x2="422.9" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="422.9" y="110" text-anchor="middle" font-size="10">60</text>
+<line x1="532.1" y1="94" x2="532.1" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="532.1" y="110" text-anchor="middle" font-size="10">80</text>
+<line x1="641.4" y1="94" x2="641.4" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="641.4" y="110" text-anchor="middle" font-size="10">100</text>
+<line x1="750.7" y1="94" x2="750.7" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="750.7" y="110" text-anchor="middle" font-size="10">120</text>
+<line x1="860.0" y1="94" x2="860.0" y2="99" stroke="#C7CFD6"/>
+<text class="lb" x="860.0" y="110" text-anchor="middle" font-size="10">140</text>
+<text class="lb" x="95" y="123" font-size="10">minutes from entry</text>
+<rect x="340.9" y="131" width="158.5" height="19" fill="#0E6E63" opacity=".18"/>
+<text class="mono" x="509.4" y="145.0" fill="#0E6E63">min 45 → 74: the conditions that determined this batch</text>
+<circle cx="783.5" cy="182.0" r="4" fill="#8A5A12"/>
+<text class="mono" x="772.5" y="186.0" text-anchor="end" fill="#8A5A12">min 126: batch A exits — a clock-based record is written here</text>
+<line x1="499.4" y1="216.0" x2="783.5" y2="216.0" stroke="#8A5A12" stroke-width="1.4"/>
+<path d="M499.4 216.0 l6 -4 l0 8 z" fill="#8A5A12"/>
+<path d="M783.5 216.0 l-6 -4 l0 8 z" fill="#8A5A12"/>
+<text class="mono" x="641.4" y="207.0" text-anchor="middle" fill="#8A5A12">52 min of the wrong hour attributed to the batch</text>
+<text class="lb" x="95" y="256" font-size="10.5">Records associate conditions with a batch by belt position and dwell, not by wall-clock time at the exit. [SNTR-SWR-REC-010]</text>
+</svg>

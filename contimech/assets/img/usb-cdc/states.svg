@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 420" width="960" height="420" font-family="IBM Plex Sans, Segoe UI, Roboto, Arial, sans-serif">
+<title>UML state machine of the USB controller (illustrative)</title>
+<rect width="960" height="420" fill="#ffffff"/>
+<text x="40" y="34" font-size="12" fill="#5a6072" font-family="IBM Plex Mono, Consolas, monospace" letter-spacing="1">«STATE MACHINE» CONTROLLER SESSION · ICD-USB-CTL-001 §7</text>
+<defs><marker id="m" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141a2b"/></marker></defs>
+<circle cx="60" cy="120" r="9" fill="#141a2b"/>
+<g fill="#fff" stroke="#141a2b" stroke-width="1.2">
+<rect x="110" y="82" width="180" height="76" rx="14"/>
+<rect x="390" y="82" width="200" height="76" rx="14"/>
+<rect x="700" y="82" width="220" height="76" rx="14"/>
+<rect x="700" y="260" width="220" height="90" rx="14" stroke="#b4402c"/>
+<rect x="390" y="260" width="200" height="90" rx="14" stroke="#b4402c"/>
+</g>
+<g font-size="13" fill="#141a2b">
+<text x="200" y="108" text-anchor="middle" font-weight="600">BOOT</text>
+<text x="124" y="132" font-size="12" fill="#5a6072">outputs safe, self-test</text>
+<text x="490" y="108" text-anchor="middle" font-weight="600">IDLE</text>
+<text x="404" y="132" font-size="12" fill="#5a6072">read-only commands</text>
+<text x="404" y="148" font-size="12" fill="#5a6072">outputs in safe state</text>
+<text x="810" y="108" text-anchor="middle" font-weight="600">ACTIVE</text>
+<text x="714" y="132" font-size="12" fill="#5a6072">session open, outputs writable</text>
+<text x="714" y="148" font-size="12" fill="#5a6072">heartbeat supervised</text>
+<text x="810" y="286" text-anchor="middle" font-weight="600" fill="#b4402c">SAFE</text>
+<text x="714" y="310" font-size="12" fill="#5a6072">entry / outputs to safe state</text>
+<text x="714" y="326" font-size="12" fill="#5a6072">entry / latch reason</text>
+<text x="714" y="342" font-size="12" fill="#5a6072">writes rejected: WRONG_STATE</text>
+<text x="490" y="286" text-anchor="middle" font-weight="600" fill="#b4402c">FAULT</text>
+<text x="404" y="310" font-size="12" fill="#5a6072">entry / outputs to safe state</text>
+<text x="404" y="326" font-size="12" fill="#5a6072">status readable</text>
+<text x="404" y="342" font-size="12" fill="#5a6072">exit only by reset</text>
+</g>
+<g stroke="#141a2b" stroke-width="1.2" fill="none" marker-end="url(#m)">
+<path d="M69 120 H108"/>
+<path d="M290 120 H388"/>
+<path d="M590 108 H698"/>
+<path d="M700 140 H592"/>
+<path d="M830 158 V258"/>
+<path d="M760 260 Q640 200 560 160"/>
+<path d="M200 158 Q220 300 388 305"/>
+</g>
+<g font-size="11.5" fill="#141a2b" font-family="IBM Plex Mono, Consolas, monospace">
+<text x="298" y="112">[test ok]</text>
+<text x="600" y="100">SESSION_OPEN</text>
+<text x="600" y="160">SESSION_CLOSE</text>
+<text x="840" y="196">[no valid frame</text>
+<text x="840" y="212"> &gt; T_HB]</text>
+<text x="575" y="236">HELLO · reason read</text>
+<text x="40" y="300">[self-test failed or</text>
+<text x="40" y="316"> internal fault]</text>
+</g>
+<text x="40" y="404" font-size="12" fill="#5a6072">The transition to SAFE does not depend on the host. A crashed script, a pulled cable and a suspended PC look the same to the controller.</text>
+</svg>

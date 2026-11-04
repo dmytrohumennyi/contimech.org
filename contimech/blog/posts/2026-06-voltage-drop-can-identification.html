@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Voltage-drop-based physical identification for CAN devices — ContiMech</title>
+<meta name="description" content="Supply-line voltage measured at start-up can help map identical CAN nodes to their physical positions in the harness. A position hint, never a replacement for UID-based identity.">
+<link rel="canonical" href="https://contimech.org/blog/posts/2026-06-voltage-drop-can-identification.html">
+<meta property="og:title" content="Voltage-drop-based physical identification for CAN devices — ContiMech">
+<meta property="og:description" content="Supply-line voltage measured at start-up can help map identical CAN nodes to their physical positions in the harness. A position hint, never a replacement for UID-based identity.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/blog/posts/2026-06-voltage-drop-can-identification.html">
+<link rel="preload" href="../../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../../assets/css/site.css?v=1">
+<link rel="icon" href="../../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../../services.html">Services</a><a href="../../case-studies/index.html">Cases</a><a href="../../blog/index.html" aria-current="page">Notes</a><a href="../../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../../blog/index.html">Notes</a> / CAN · Embedded · Diagnostics</div>
+<h1>Voltage-drop-based physical identification for CAN devices</h1>
+<p class="article-meta"><time datetime="2026-06-02">2026-06-02</time> · Technical note</p>
+<p class="lead">Supply-line voltage measured at start-up can help map identical CAN nodes to their physical positions in the harness. A position hint, never a replacement for UID-based identity.</p>
+</div>
+<article class="prose">
+
+<p class="callout"><strong>Main idea:</strong> a CAN device UID tells who the device is. A measured supply-voltage profile can help estimate where the device is located in the harness. The method is useful for discovery and diagnostics, but it must remain auxiliary.</p>
+<nav aria-label="Article contents" class="toc">
+<a href="#problem">01 · Problem</a>
+<a href="#core-idea">02 · Core idea</a>
+<a href="#architecture">03 · Architecture</a>
+<a href="#sequence">04 · Discovery sequence</a>
+<a href="#mapping">05 · Mapping table</a>
+<a href="#can-lines">06 · CAN_H / CAN_L constraint</a>
+<a href="#limits">07 · Limitations</a>
+<a href="#diagnostics">08 · Diagnostic value</a>
+<a href="#requirements">09 · Requirements</a>
+<a href="#algorithm">10 · Algorithm sketch</a>
+</nav>
+<h2 id="problem">01 · The problem: identical devices on a shared bus</h2>
+<p>Distributed CAN systems often place multiple identical slave modules on the same bus segment: relay boards, sensor aggregators, valve controllers, or test-bench switching units. Each device may run the same firmware and use the same hardware revision, but the system still needs to know which module occupies which physical slot.</p>
+<p>Traditional solutions use mechanical configurability: DIP switches, rotary encoders, address jumpers, or pre-flashed CAN IDs. These approaches work, but they introduce assembly errors, additional BOM items, service mistakes, and weak traceability when a module is replaced.</p>
+<p>The engineering question is simple: can physical ordering be inferred automatically from information already available in the system?</p>
+<h2 id="core-idea">02 · Core idea</h2>
+<p>Every conductor segment has resistance. When current flows through a cable harness, devices located farther from the power source may observe a slightly lower supply voltage.</p>
+<pre><code>ΔV ≈ I · R_line</code></pre>
+<p>Here <code>R_line</code> accumulates cable resistance, connector resistance, crimp joints, and intermediate contact elements.</p>
+<p>Each slave measures its local supply voltage through an on-chip ADC during start-up. The master collects these measurements together with stable unique identifiers, such as MCU UID or serial number, and sorts the node list by the measured voltage profile. The sorted order approximates the physical chain.</p>
+<div class="callout">
+<div class="callout-label">Key principle</div>
+<strong>Device UID defines identity.</strong> Voltage drop provides a position hint. The CAN discovery procedure connects both into a usable system map.
+        </div>
+<h2 id="architecture">03 · System architecture</h2>
+<p>The method is not a replacement for a CAN protocol. It is an additional layer in the discovery and diagnostics logic.</p>
+<div class="arch-grid">
+<div class="arch-cell"><span class="arch-cell-label">MCU UID / Serial</span><span class="arch-cell-desc">Stable factory-programmed identity. It is never derived from voltage.</span></div>
+<div class="arch-cell"><span class="arch-cell-label">ADC Measurement</span><span class="arch-cell-desc">Each slave reads local V<sub>CC</sub> or a dedicated sense-line voltage at power-up.</span></div>
+<div class="arch-cell"><span class="arch-cell-label">CAN Discovery</span><span class="arch-cell-desc">The master broadcasts a request; slaves respond with UID and measured voltage.</span></div>
+<div class="arch-cell"><span class="arch-cell-label">Mapping Table</span><span class="arch-cell-desc">The master sorts by voltage, assigns logical CAN IDs, and stores the position–UID–ID relation.</span></div>
+</div>
+<p>The mapping table persists for the session. On each power cycle, the master can re-run discovery and detect topology changes: missing nodes, swapped devices, or abnormal voltage deltas.</p>
+<h2 id="sequence">04 · Discovery sequence</h2>
+<ol class="flow-steps">
+<li>Master powers the CAN device chain.</li>
+<li>Each slave measures local voltage through ADC.</li>
+<li>Master sends a CAN broadcast discovery request.</li>
+<li>Each slave responds with UID and measured voltage.</li>
+<li>Master collects responses within a timeout window.</li>
+<li>Master validates UID integrity and voltage plausibility.</li>
+<li>Master sorts nodes by measured voltage.</li>
+<li>Master assigns logical CAN Node IDs.</li>
+<li>Master stores the mapping table and runs diagnostics.</li>
+<li>System enters normal operation.</li>
+</ol>
+<pre><code>{
+  "uid":                "A1B2C3D4",
+  "measured_voltage_v":  23.87,
+  "hardware_revision":  "RevA",
+  "firmware_version":   "1.0.3",
+  "temperature_c":       36.5,
+  "diagnostic_flags":   []
+}</code></pre>
+<h2 id="mapping">05 · Example mapping table</h2>
+<div class="table-wrap">
+<table>
+<thead><tr><th>Position</th><th>UID</th><th>Measured V</th><th>CAN ID</th><th>Status</th></tr></thead>
+<tbody>
+<tr><td>1</td><td><code>A1B2C3D4</code></td><td>23.94 V</td><td><code>0x01</code></td><td><span class="status-ok">OK</span></td></tr>
+<tr><td>2</td><td><code>B7E912AA</code></td><td>23.88 V</td><td><code>0x02</code></td><td><span class="status-ok">OK</span></td></tr>
+<tr><td>3</td><td><code>C42F90DA</code></td><td>23.81 V</td><td><code>0x03</code></td><td><span class="status-ok">OK</span></td></tr>
+<tr><td>4</td><td><code>D901A7BC</code></td><td>23.74 V</td><td><code>0x04</code></td><td><span class="status-warn">High contact resistance</span></td></tr>
+</tbody>
+</table>
+</div>
+<p>Node 4 is flagged because its voltage drop relative to Node 3 exceeds the expected delta. This may indicate a marginal crimp, oxidized contact, or undersized harness segment.</p>
+<h2 id="can-lines">06 · Why not use CAN_H / CAN_L?</h2>
+<div class="callout warn">
+<div class="callout-label">Hard constraint</div>
+          CAN_H and CAN_L must remain dedicated to CAN communication. They should not be reused for analog identification.
+        </div>
+<p>Analog measurement on the differential pair can affect signal integrity, bus termination behaviour, dominant/recessive voltage margins, EMC behaviour, and compliance with the CAN physical layer. Even a passive measurement load may become problematic under worst-case combinations of node count, cable length, and baud rate.</p>
+<p>Preferred measurement paths are: local V<sub>CC</sub> measurement via ADC, a dedicated sense line, a controlled weak-current measurement path, or a special low-current identification mode on the supply rail.</p>
+<h2 id="limits">07 · Limitations</h2>
+<p>Voltage drop is not a stable deterministic identity source. It depends on production, environment, topology, and operating conditions.</p>
+<div class="limit-grid">
+<div class="limit-item">Load current variation</div>
+<div class="limit-item">Cable length tolerance</div>
+<div class="limit-item">Wire cross-section</div>
+<div class="limit-item">Connector resistance</div>
+<div class="limit-item">Crimp quality</div>
+<div class="limit-item">Contact aging</div>
+<div class="limit-item">Ambient temperature</div>
+<div class="limit-item">Simultaneous node activity</div>
+<div class="limit-item">Harness branching</div>
+</div>
+<p>Therefore, voltage drop must never be used as the sole source of device identity. The MCU UID or serial number remains the ground truth.</p>
+<h2 id="diagnostics">08 · Diagnostic value</h2>
+<p>Beyond initial mapping, the voltage profile accumulated across multiple power cycles can become a harness health indicator. Deviations from the baseline profile can surface bad contacts, oxidized connectors, damaged wires, missing nodes, wrong device order, or overload conditions.</p>
+<pre><code>// Example diagnostic output
+Expected Node 4 is missing.
+Voltage profile indicates a possible cable or connector issue
+between Node 3 and Node 5.
+Measured delta Node3→Node5: 24 mV
+Expected delta: ≤10 mV per node.</code></pre>
+<h2 id="requirements">09 · System requirements</h2>
+<ul class="req-list">
+<li><span class="req-id">VD-CAN-001</span><span>The system shall support voltage-drop-based physical position estimation for CAN-connected slave devices.</span></li>
+<li><span class="req-id">VD-CAN-002</span><span>Each slave shall measure local supply voltage or dedicated sense-line voltage during discovery.</span></li>
+<li><span class="req-id">VD-CAN-003</span><span>Each slave shall report its unique hardware identifier and measured voltage to the master controller.</span></li>
+<li><span class="req-id">VD-CAN-004</span><span>The master shall use received voltage measurements to estimate relative physical order.</span></li>
+<li><span class="req-id">VD-CAN-005</span><span>The master shall assign logical CAN Node IDs using UID, discovered node list, and estimated physical order.</span></li>
+<li><span class="req-id">VD-CAN-006</span><span>The voltage-drop method shall not be used as the sole source of device identity.</span></li>
+<li><span class="req-id">VD-CAN-007</span><span>The system shall preserve CAN_H and CAN_L exclusively for CAN communication.</span></li>
+</ul>
+<h2 id="algorithm">10 · Algorithm sketch</h2>
+<pre><code>function discover_can_nodes():
+    send_broadcast_discovery_request()
+    responses = collect_slave_responses(timeout)
+
+    for each response in responses:
+        validate_uid(response.uid)
+        validate_voltage_range(response.measured_voltage)
+
+    sorted_nodes = sort_by_measured_voltage_descending(responses)
+
+    for index, node in enumerate(sorted_nodes):
+        node.physical_position = index + 1
+        node.logical_can_id = assign_can_id(index + 1)
+
+    mapping_table = create_mapping_table(sorted_nodes)
+    run_voltage_profile_diagnostics(mapping_table)
+    store_mapping_table(mapping_table)
+
+    return mapping_table</code></pre>
+<p>The sort direction depends on whether higher or lower measured supply voltage corresponds to physical proximity to the source in the specific harness topology. The convention must be consistent and documented.</p>
+<div class="summary-box">
+<p>Voltage drop can serve as an auxiliary physical position signature for CAN devices. UID is the passport. Voltage is the map.</p>
+</div>
+
+
+<div class="sep"></div>
+<p class="small muted"><a href="../../blog/index.html">All notes</a> · <a href="../../services.html">Services</a> · <a href="../../contact.html">Contact</a></p>
+</article>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../../services.html">Services</a><a href="../../case-studies/index.html">Cases</a><a href="../../blog/index.html" aria-current="page">Notes</a><a href="../../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,217 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Services — ContiMech</title>
+<meta name="description" content="ContiMech services: prototyping, mathematical analysis, computer modelling, communication protocols, requirements and embedded firmware (Linux + ROS 2, Zephyr, Alpine Linux).">
+<link rel="canonical" href="https://contimech.org/services.html">
+<meta property="og:title" content="Services — ContiMech">
+<meta property="og:description" content="ContiMech services: prototyping, mathematical analysis, computer modelling, communication protocols, requirements and embedded firmware (Linux + ROS 2, Zephyr, Alpine Linux).">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/services.html">
+<link rel="preload" href="assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=1">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="services.html" aria-current="page">Services</a><a href="case-studies/index.html">Cases</a><a href="blog/index.html">Notes</a><a href="contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<figure class="mosaic-band"><img src="assets/img/mosaic/mosaic-science-wall.jpg" alt="" style="object-position:50% 45%"><figcaption>Modernist mosaic</figcaption></figure>
+<div class="page-head"><span class="label">Services</span>
+<h1>Research and software for embedded systems</h1>
+<p class="lead">Two groups of services. Research answers a question about a system before money goes into a design. Software turns the answer into a system description, requirements, protocols and firmware that another team can build on. We can start from a drawing, a legacy specification, an interface problem, an existing prototype or a product idea.</p>
+<nav class="svc-index" aria-label="Services">
+<a href="#research"><i class="t t-rs"></i><span>1 Research</span></a>
+<a href="#protocols"><i class="t t-pr"></i><span>2.1 Communication protocols</span></a>
+<a href="#requirements"><i class="t t-rq"></i><span>2.2 System description, requirements</span></a>
+<a href="#firmware"><i class="t t-fw"></i><span>2.3 Firmware</span></a>
+<a href="#formats"><i class="t"></i><span>Engagement</span></a>
+</nav>
+</div>
+
+<section class="section" id="research" style="padding-top:8px">
+<div class="section-head"><span class="label"><i class="t t-rs"></i>1 · Research</span><h2>Check the idea before committing to it</h2>
+<p class="muted">Each research task starts with one written hypothesis and an acceptance criterion: which result confirms it and which rejects it. The output is evidence, not an opinion.</p></div>
+
+<div class="service" id="prototyping">
+<div class="service-label"><span class="service-no"><i class="t t-rs"></i>1.1</span><h3>Prototyping</h3>
+<figure class="svc-photo"><img src="assets/img/home-slideshow/slide-12.webp" alt="Bench prototype with controller boards and wiring" loading="lazy"></figure></div>
+<div class="service-body">
+<p>From a problem statement to a testable unit. A prototype exists to answer one question, so we build the smallest setup that can answer it: firmware on a development kit, a bench with real buses, sensors and actuators, a fixture, an adapter or a simulator of a device that does not exist yet.</p>
+<div class="fit"><div><h4>Fits when</h4><ul><li>the solution is not obvious yet</li><li>customer feedback is needed quickly</li><li>an expensive production decision must be checked first</li></ul></div>
+<div><h4>Typical work</h4><ul><li>concept alternatives and trade-offs</li><li>proof-of-concept firmware and bench setup</li><li>assembly, integration, basic validation</li><li>recommendations for the next iteration</li></ul></div></div>
+<p class="deliver"><b>You receive</b>Working prototype, test procedure, report with measured results and a clear yes or no on the hypothesis.</p>
+</div></div>
+
+<div class="service" id="analysis">
+<div class="service-label"><span class="service-no"><i class="t t-rs"></i>1.2</span><h3>Mathematical analysis</h3></div>
+<div class="service-body">
+<p>Calculations that settle a design question before hardware is ordered. Every number comes with its assumptions and its derivation, so it can be reviewed.</p>
+<ul>
+<li>End-to-end timing and latency budgets: debounce, task periods, arbitration, transmission, actuation</li>
+<li>Bus load, worst-case response times, link budgets and radio coverage</li>
+<li>Reliability estimates (FIT, MTTF) for alternative architectures, per ISO 13849-1 and SN 29500 data</li>
+<li>Sizing: power, battery, memory, CPU headroom, recorder capacity</li>
+<li>Control loop and filter behaviour</li>
+</ul>
+<p class="deliver"><b>You receive</b>Analysis note with assumptions, method, results and margins.</p>
+<p class="small">Examples: <a href="case-studies/hmi-control-board-communication-protocol.html#s8">safe-stop budget, 27.7 ms against 50 ms</a> · <a href="case-studies/first-stage-hop-test-telemetry.html#s4">link budget at 130 km</a> · <a href="blog/posts/2026-03-hw-vs-sw-reliability-mcu.html">FIT of discrete circuit vs MCU</a></p>
+</div></div>
+
+<div class="service" id="modelling">
+<div class="service-label"><span class="service-no"><i class="t t-rs"></i>1.3</span><h3>Computer modelling</h3></div>
+<div class="service-body">
+<p>Models of the plant, the controller or the firmware, used to compare options early and reused later for testing. When a model depends on measurements from the client's equipment, the plan says so: baseline model, experiment definition, measurement, calibration, validation.</p>
+<ul>
+<li>MATLAB / Simulink plant and controller models, code generation where it pays off</li>
+<li>Firmware on virtual targets (QEMU, Renode) before boards exist</li>
+<li>Scenario sets that move into software- and hardware-in-the-loop testing</li>
+</ul>
+<p class="deliver"><b>You receive</b>Model, simulation scenarios, and a report on what the model shows and where it stops being valid.</p>
+<p class="small">Example: <a href="case-studies/compact-rocket-platform.html">compact rocket platform: models before metal</a></p>
+</div></div>
+</section>
+
+<section class="section" id="software">
+<div class="section-head"><span class="label">2 · Software</span><h2>System description, protocols and firmware</h2>
+<p class="muted">We close the system contract before individual disciplines optimise their own parts. Specification first, code second; every interface and requirement has a way to be tested.</p></div>
+
+<div class="service" id="protocols">
+<div class="service-label"><span class="service-no"><i class="t t-pr"></i>2.1</span><h3>Communication protocols</h3></div>
+<div class="service-body">
+<p>We engineer the communication layer as a system contract: the byte on the wire, the state machine behind it, the timing and fault behaviour around it, and the specification that keeps both ends implementable and testable by different teams.</p>
+<p class="small muted">CAN / CAN FD · RS-485 · UART · USB · Ethernet (UDP, TCP) · ROS 2 interfaces · radio telemetry links</p>
+<div class="grid-defs">
+<div><h4>Frame contract</h4><p>Delimiting, header fields, payload typing, units, endianness, integrity trailer, reserved fields, versioning.</p></div>
+<div><h4>Behaviour</h4><p>Command and response semantics, role arbitration, acknowledgements, retries, duplicate handling, idempotency, terminal failure states.</p></div>
+<div><h4>Timing</h4><p>Serialisation, arbitration, task periods, host latency, timeout derivation, bus load and margin.</p></div>
+<div><h4>Data protection</h4><p>CRC selection, E2E Data IDs, alive counters, freshness, replay protection; CMAC or HMAC where justified.</p></div>
+<div><h4>Failure management</h4><p>Stale data, node loss, resynchronisation, bus-off recovery, safe-state entry, rate limiting, diagnostic counters.</p></div>
+<div><h4>Verification</h4><p>Conformance suites, fault injection, replay and corruption tests, soak runs, HIL scenarios derived from the specification.</p></div>
+</div>
+<h4>Security is separated from integrity</h4>
+<dl class="rows compact">
+<div class="row"><dt>Integrity</dt><dd>CRC and E2E checks detect corruption, stale buffers, wrong delivery and sequence faults.</dd></div>
+<div class="row"><dt>Authenticity</dt><dd>State-changing services use CMAC or HMAC with freshness values against forgery and replay.</dd></div>
+<div class="row"><dt>Confidentiality</dt><dd>Encryption only where disclosure is a credible loss and the key life cycle is actually solved.</dd></div>
+</dl>
+<p>The message catalogue is machine-readable and under version control. Embedded headers, parsers, host tooling and the ICD tables are generated from one reviewed source, so no second hand-kept list drifts away from the code.</p>
+<p class="deliver"><b>You receive</b>Interface control document, message catalogue, reference implementation in C/C++, conformance and fault-injection tests.</p>
+<p class="small">Examples: <a href="case-studies/hmi-control-board-communication-protocol.html">CAN ICD</a> · <a href="case-studies/usb-cdc-control-link.html">USB CDC ICD</a> · <a href="case-studies/first-stage-hop-test-telemetry.html">telemetry ICD</a> · <a href="blog/posts/2026-06-voltage-drop-can-identification.html">CAN node identification note</a></p>
+</div></div>
+
+<div class="service" id="requirements">
+<div class="service-label"><span class="service-no"><i class="t t-rq"></i>2.2</span><h3>System description and requirements</h3></div>
+<div class="service-body">
+<p>We convert drawings, legacy specifications, interface descriptions, stakeholder input and operating scenarios into a system description and an allocated requirement baseline with explicit verification criteria. Requirements that survive design, integration and change.</p>
+<h4>System description</h4>
+<dl class="rows compact">
+<div class="row"><dt>Problem and scenarios</dt><dd>Actors, start-up, normal operation, configuration, fault, degraded mode, recovery; constraints on timing, environment, safety, security, cost.</dd></div>
+<div class="row"><dt>Architecture and authority</dt><dd>Decomposition, responsibilities, data and control flow; who owns state, who requests changes, who may reject them.</dd></div>
+<div class="row"><dt>Failure boundaries</dt><dd>What happens when a node, link, sensor, actuator or service disappears.</dd></div>
+<div class="row"><dt>Interface control</dt><dd>Physical (media, connectors, electrical limits, timing), logical (identifiers, frames, units, ranges, versions) and behavioural (sessions, retries, timeouts, safe state).</dd></div>
+</dl>
+<h4>From source material to evidence</h4>
+<ol class="chain"><li><b>Source</b>need, drawing, standard, interface, legacy behaviour</li><li><b>Context</b>actors, scenarios, boundaries, assumptions</li><li><b>Requirement</b>one necessary, verifiable commitment</li><li><b>Allocation</b>system → HW / SW / mechanics / interface</li><li><b>Evidence</b>test, analysis, inspection, review</li></ol>
+<figure class="svc-figure"><div class="frame"><img src="assets/img/requirements-engineering/component-interface-drawing.png" alt="Dimensioned component interface drawing" loading="lazy"></div>
+<figcaption>Example. A released drawing gives geometry; the requirement closes ownership, tolerance, mating and acceptance: <span class="mono">MEC-IF-012</span> “The mechanical assembly shall maintain the controlled mating geometry defined by the approved interface drawing.” Verification: drawing inspection and physical fit check.</figcaption></figure>
+<h4>What we change in a weak requirement</h4>
+<div class="compare">
+<span class="h blank"></span><span class="h">Weak</span><span class="h">Engineered</span>
+<span class="h">Ambiguity</span><span class="weak">“The interface shall be fast and reliable.”</span><span>“The end-to-end SAFE_STOP path shall actuate the output within 50 ms of the operator input.”</span>
+<span class="h">Design leak</span><span class="weak">“Use component X and material Y to make the interface robust.”</span><span>“The potting process shall preserve all connector mating surfaces and required pin clearances.”</span>
+<span class="h">Testability</span><span class="weak">“The controller should log errors.”</span><span>“The firmware shall record defined event, fault and system-state records for commissioning and troubleshooting.”</span>
+</div>
+<h4>Ways to start</h4>
+<div class="grid-defs three">
+<div><h4 class="mono-h">2–3 weeks</h4><p><b>Requirements audit.</b> Ambiguity, missing constraints, weak decomposition, allocation and verification gaps, broken traceability, ranked into a remediation plan.</p></div>
+<div><h4 class="mono-h">Work package</h4><p><b>Requirements development.</b> Concept material, drawings, legacy documents and interfaces turned into a structured baseline.</p></div>
+<div><h4 class="mono-h">Ongoing</h4><p><b>Requirements ownership.</b> Baseline maintenance, clarification, change impact; architecture and verification kept aligned as the product evolves.</p></div>
+</div>
+<h4>Standards applied where they add engineering control</h4>
+<dl class="rows compact">
+<div class="row"><dt><span class="mono">ISO/IEC/IEEE 29148</span></dt><dd>Requirements processes, information items and characteristics</dd></div>
+<div class="row"><dt><span class="mono">Automotive SPICE 4.0</span></dt><dd>SYS.2, HWE.1, SWE.1 requirements analysis</dd></div>
+<div class="row"><dt><span class="mono">ISO 26262 · ISO/SAE 21434</span></dt><dd>Safety and cybersecurity requirements, decomposition, allocation, traceability</dd></div>
+<div class="row"><dt><span class="mono">IEC 61508</span></dt><dd>Functional-safety life cycle for industrial E/E/PE systems</dd></div>
+</dl>
+<p class="deliver"><b>You receive</b>System description, stakeholder and system requirements, HW / SW requirements, ICDs, traceability and verification matrices, assumption and open-point registers, audit findings, change-impact analysis.</p>
+<p class="small">Examples: <a href="case-studies/sintering-furnace-requirements.html">68 requirements for a sintering furnace</a> · system description and requirements in each <a href="case-studies/index.html">ICD case</a></p>
+</div></div>
+
+<div class="service" id="firmware">
+<div class="service-label"><span class="service-no"><i class="t t-fw"></i>2.3</span><h3>Firmware development</h3>
+<figure class="svc-photo"><img src="assets/img/home-slideshow/slide-05.webp" alt="Firmware bench with target board, logic connections and oscilloscope" loading="lazy"></figure></div>
+<div class="service-body">
+<p>First define the contract, then implement, test on a virtual target, fix, and move to the real MCU or SoC. Documentation is the engineering contract for implementation, review, testing and future porting.</p>
+<ol class="chain"><li><b>Analysis</b>use case, constraints, interfaces, acceptance</li><li><b>Design description</b>components, states, data flow, errors</li><li><b>Protocol</b>frames, roles, timing, faults</li><li><b>Virtual target</b>Docker, QEMU, Renode</li><li><b>Real target</b>bring-up, HW/FW tests, handover</li></ol>
+<p class="small muted">Gate A before implementation: use cases, constraints, interfaces and acceptance are fixed. Gate C before review: runnable build, logs, test evidence, source, models and handover package agree.</p>
+<div class="sub"><h3>Linux and ROS 2<span class="focus">Main focus</span></h3>
+<ul>
+<li>Embedded Linux on ARM application processors</li>
+<li>ROS 2 nodes, interfaces, launch files and parameters; ros2_control hardware interfaces; simulation scenes for behaviour checks</li>
+<li>User-space drivers over SocketCAN, libgpiod and serial</li>
+<li>Computer vision and AI inference on the target</li>
+</ul></div>
+<div class="sub"><h3>Zephyr configuration</h3>
+<ul>
+<li>Board definitions, devicetree and Kconfig</li>
+<li>Peripheral and driver setup on microcontrollers</li>
+<li>MCU-side protocol stacks and bootloader configuration</li>
+</ul></div>
+<div class="sub"><h3>Alpine Linux</h3>
+<ul>
+<li>Minimal aarch64 images with OpenRC services</li>
+<li>Boot-time reduction to an application-ready target</li>
+<li>SSH service access, persistent logging, A/B updates with rollback</li>
+</ul></div>
+<div class="sub"><h3>How code gets written</h3>
+<ul>
+<li>C/C++ for embedded logic, drivers, protocol handling and target integration</li>
+<li>Python for prototypes, tools, test scripts and automation</li>
+<li>MATLAB / Simulink where models and generated code make variants easier</li>
+<li>AI-assisted generation for scaffolds, parsers, serializers and tests from reviewed documents; handwritten code where direct engineering control is required</li>
+</ul></div>
+<p class="deliver"><b>You receive</b>Source code, models, Docker build setup, system image, design description, test evidence.</p>
+<p class="small">Examples: <a href="case-studies/embedded-linux-inertial-control-platform.html">Linux on i.MX93 with Alpine</a> · <a href="case-studies/industrial-vibro-feeder-hmi-control-module.html">HMI and control firmware over CAN</a> · <a href="case-studies/local-speech-to-document-pipeline.html">Whisper pipeline on Linux</a></p>
+</div></div>
+</section>
+
+<section class="section" id="formats">
+<div class="section-head"><span class="label">Engagement</span><h2>Four ways to work together</h2>
+<p class="muted">Choose by the result you need. Every format runs the same loop: context, scope with acceptance criteria, engineering, evidence and handover.</p></div>
+<div class="formats">
+<div class="item"><h3>Prototype</h3><p>From problem statement to a testable unit, fast and cheap, before production money is spent.</p><p class="fmt-out">Concepts and trade-offs · prototype · validation · next-step advice</p></div>
+<div class="item"><h3>Work package</h3><p>A bounded task with input data, scope, expected result and acceptance criteria. You get an output, not headcount.</p><p class="fmt-out">Risk list · plan and milestones · implementation · evidence</p></div>
+<div class="item"><h3>Documentation</h3><p>Knowledge trapped in chats and meetings turned into requirements, interface descriptions, test plans and handover packages.</p><p class="fmt-out">Requirements · ICDs · test plans · handover package</p></div>
+<div class="item"><h3>Capacity</h3><p>Engineers join your team when tasks are clear but execution is slow or a discipline is missing.</p><p class="fmt-out">Role-based support · clear ownership · regular sync</p></div>
+</div>
+</section>
+
+<section class="section">
+<div class="section-head"><span class="label">Delivery</span><h2>One technical owner</h2>
+<p class="muted">We do not split system responsibility between subcontractors. The core team owns requirements, architecture, protocols, firmware, integration and verification. When a project needs facilities we do not run ourselves, we specify the work, coordinate it and accept the result against the requirements.</p></div>
+<dl class="rows">
+<div class="row"><dt>Kept in the core team</dt><dd>System description and requirements, protocols, firmware and software, modelling and analysis, integration, verification planning, documentation</dd></div>
+<div class="row"><dt>Through partners, under our acceptance</dt><dd>PCB layout and assembly, parts manufacturing, harness production, accredited laboratory tests and certification, field trials</dd></div>
+</dl>
+<div class="cta" style="margin-top:32px"><p class="lead">Send the system context, the expected result, constraints and timeline. We reply with questions or a first step.</p><a class="btn primary" href="contact.html">Describe the task</a></div>
+</section>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="services.html" aria-current="page">Services</a><a href="case-studies/index.html">Cases</a><a href="blog/index.html">Notes</a><a href="contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

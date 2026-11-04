@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Compact rocket platform: models before metal — ContiMech</title>
+<meta name="description" content="System baseline, motor-burn and flight models in MATLAB/Simulink, FreeCAD layout and a quick physical prototype for a 40 cm platform: open design questions answered before detailed work.">
+<link rel="canonical" href="https://contimech.org/case-studies/compact-rocket-platform.html">
+<meta property="og:title" content="Compact rocket platform: models before metal — ContiMech">
+<meta property="og:description" content="System baseline, motor-burn and flight models in MATLAB/Simulink, FreeCAD layout and a quick physical prototype for a 40 cm platform: open design questions answered before detailed work.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/compact-rocket-platform.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../case-studies/index.html">Cases</a> / Modelling · Analysis · Prototype</div>
+<h1>Compact rocket platform: models before metal</h1>
+<p class="lead">A compact rocket platform had to be defined as an engineering system before detailed design: geometry, motor boundary, payload mass, steering surfaces, actuation and power had to fit together. We answered the open questions with a written baseline, models and a quick physical prototype first.</p>
+<dl class="facts"><div><dt>Platform</dt><dd>40 cm body, ready motor</dd></div><div><dt>Baseline</dt><dd>payload ≈ 110 g, burn ≈ 20 s</dd></div><div><dt>Tools</dt><dd>FreeCAD, MATLAB, Simulink</dd></div><div><dt>Services</dt><dd>1.1 Prototyping · 1.2 Analysis · 1.3 Modelling</dd></div></dl>
+</div>
+<div class="prose">
+
+<h2>Task</h2>
+<p>The job was not to sketch a shape. Airframe, propulsion boundary, steering concept, payload mass, models and implementation assumptions had to agree before deeper mechanical and modelling work started, so that later steps would not be built on guesses.</p>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-aerospace-system-cad-front.webp" title="Open full size"><img src="../assets/img/projects/case-aerospace-system-cad-front.webp" alt="Front-oriented CAD view of the compact rocket platform" loading="lazy"></a></div><figcaption>System model: body, nose and three rear aerodynamic surfaces.</figcaption></figure>
+<h2>Baseline</h2>
+<div class="table-wrap"><table><thead><tr><th>Item</th><th>Value</th><th>Treated as</th></tr></thead><tbody>
+<tr><td>Body length</td><td>≈ 40 cm</td><td>Geometric envelope</td></tr>
+<tr><td>Payload mass</td><td>≈ 110 g</td><td>Allocated system boundary for sizing and packaging</td></tr>
+<tr><td>Motor</td><td>Ready solid motor, burn ≈ 20 s</td><td>Fixed interface; powered segment modelled explicitly</td></tr>
+<tr><td>Steering</td><td>Three rear aerodynamic surfaces</td><td>Selected concept, sized against actuation and packaging</td></tr>
+</tbody></table></div>
+<h2>What we did</h2>
+<ul>
+<li><strong>System split.</strong> Body, propulsion, surfaces, actuation, power and models separated into work packages with visible dependencies.</li>
+<li><strong>Models first.</strong> Motor-burn and flight-behaviour models in MATLAB/Simulink to reason about trajectory, altitude and range, and the effect of each design assumption.</li>
+<li><strong>Sizing.</strong> Actuator selection and battery capacity derived from the integration case, not picked from a catalogue.</li>
+<li><strong>Layout.</strong> FreeCAD body and rear packaging around the real motor boundary and the three surfaces.</li>
+<li><strong>Prototype check.</strong> A quick physical build to confirm proportions and the practical feel of the concept in parallel with digital design.</li>
+</ul>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-aerospace-mechanical-cad-perspective.webp" title="Open full size"><img src="../assets/img/projects/case-aerospace-mechanical-cad-perspective.webp" alt="Perspective CAD view of the rocket body and rear surfaces" loading="lazy"></a></div><figcaption>Rear packaging: motor boundary, surfaces and actuation space.</figcaption></figure>
+<figure class="narrow"><div class="frame"><a href="../assets/img/projects/case-aerospace-prototype-photo.webp" title="Open full size"><img src="../assets/img/projects/case-aerospace-prototype-photo.webp" alt="Quick physical prototype standing on a desk" loading="lazy"></a></div><figcaption>Quick physical prototype used as a proportion and manufacturability check.</figcaption></figure>
+<h2>Result</h2>
+<p>A compact, reviewable baseline: size and mass constraints, propulsion assumption, steering concept and model-supported reasoning aligned before detailed implementation. The next mechanical and modelling steps started without open questions about the basics.</p>
+
+<div class="sep"></div>
+<p class="small muted">Next case: <a href="../case-studies/embedded-linux-inertial-control-platform.html">Linux compute layer inside a compact control stack</a> · <a href="../services.html">Services</a> · <a href="../contact.html">Discuss a similar task</a></p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

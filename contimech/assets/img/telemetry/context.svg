@@ -1,0 +1,43 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 400" width="960" height="400" font-family="IBM Plex Sans, Segoe UI, Roboto, Arial, sans-serif">
+<title>System context of the hop-test telemetry system (illustrative)</title>
+<rect width="960" height="400" fill="#ffffff"/>
+<text x="40" y="34" font-size="12" fill="#5a6072" font-family="IBM Plex Mono, Consolas, monospace" letter-spacing="1">«DEPLOYMENT» ICD-TLM-HOP-001 §2</text>
+<defs><marker id="k" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141a2b"/></marker></defs>
+<rect x="40" y="56" width="330" height="310" fill="none" stroke="#1f3c96" stroke-width="1.5"/>
+<text x="56" y="80" font-size="13" font-weight="600" fill="#1f3c96">Flight segment · first stage</text>
+<g fill="#fff" stroke="#141a2b" stroke-width="1.2">
+<rect x="60" y="100" width="130" height="50"/><rect x="220" y="100" width="130" height="50"/>
+<rect x="60" y="200" width="130" height="50"/><rect x="220" y="200" width="130" height="50" stroke="#d39319" stroke-width="2"/>
+<rect x="140" y="296" width="130" height="50"/>
+<rect x="560" y="70" width="150" height="50"/><rect x="560" y="290" width="150" height="50"/>
+<rect x="770" y="180" width="150" height="50" stroke="#d39319" stroke-width="2"/>
+<rect x="770" y="290" width="150" height="50"/><rect x="770" y="70" width="150" height="50"/>
+</g>
+<g font-size="12.5" fill="#141a2b" text-anchor="middle">
+<text x="125" y="122">Sensors</text><text x="125" y="138" font-size="11.5" fill="#5a6072">analog, digital, bus</text>
+<text x="285" y="122">Data acquisition</text><text x="285" y="138" font-size="11.5" fill="#5a6072">sampling, time stamp</text>
+<text x="125" y="222">Recorder</text><text x="125" y="238" font-size="11.5" fill="#5a6072">every frame, protected</text>
+<text x="285" y="222">TLM encoder</text><text x="285" y="238" font-size="11.5" fill="#5a6072">frames, VCs, FEC</text>
+<text x="205" y="318">S-band transmitter</text><text x="205" y="334" font-size="11.5" fill="#5a6072">wrap-around antenna</text>
+<text x="635" y="92">Station A</text><text x="635" y="108" font-size="11.5" fill="#5a6072">launch site, dish</text>
+<text x="635" y="312">Station B</text><text x="635" y="328" font-size="11.5" fill="#5a6072">landing zone</text>
+<text x="845" y="202">Frame merger</text><text x="845" y="218" font-size="11.5" fill="#5a6072">best copy per SEQ</text>
+<text x="845" y="92">Live display</text><text x="845" y="108" font-size="11.5" fill="#5a6072">class A, B</text>
+<text x="845" y="312">Archive</text><text x="845" y="328" font-size="11.5" fill="#5a6072">completeness check</text>
+</g>
+<g stroke="#141a2b" stroke-width="1.2" fill="none" marker-end="url(#k)">
+<path d="M190 125 H218"/><path d="M285 150 V198"/><path d="M220 225 H192"/><path d="M285 250 V275 H230 V294"/>
+<path d="M710 95 Q760 120 790 178"/><path d="M710 315 Q760 290 790 232"/>
+<path d="M845 180 V122"/><path d="M845 230 V288"/>
+<path d="M125 250 V380 H845 V342" stroke-dasharray="6 4"/>
+</g>
+<g stroke="#d39319" stroke-width="1.6" fill="none" stroke-dasharray="2 5">
+<path d="M270 315 Q420 160 558 98"/><path d="M270 322 Q420 330 558 315"/>
+</g>
+<g font-size="11.5" font-family="IBM Plex Mono, Consolas, monospace" fill="#141a2b">
+<text x="432" y="232">IF-01 RF downlink</text>
+<text x="420" y="345">IF-01 RF downlink</text>
+<text x="470" y="374">IF-03 post-flight dump (wired / local link)</text>
+<text x="728" y="152">IF-02</text><text x="728" y="270">IF-02</text>
+</g>
+</svg>

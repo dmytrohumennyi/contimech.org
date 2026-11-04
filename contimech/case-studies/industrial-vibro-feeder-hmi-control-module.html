@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>HMI and control module for an industrial vibratory feeder — ContiMech</title>
+<meta name="description" content="Local operator menu, CAN communication with feeder peripherals, diagnostics and event logging on one MCU module.">
+<link rel="canonical" href="https://contimech.org/case-studies/industrial-vibro-feeder-hmi-control-module.html">
+<meta property="og:title" content="HMI and control module for an industrial vibratory feeder — ContiMech">
+<meta property="og:description" content="Local operator menu, CAN communication with feeder peripherals, diagnostics and event logging on one MCU module.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/industrial-vibro-feeder-hmi-control-module.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../case-studies/index.html">Cases</a> / Firmware · CAN · Requirements</div>
+<h1>Operator interface and control module for an industrial vibratory feeder</h1>
+<p class="lead">A local operator interface and embedded control module for a vibratory feeder that orients and feeds metal parts and fasteners into automated production equipment. Customer details are omitted.</p>
+<dl class="facts"><div><dt>Domain</dt><dd>Industrial automation</dd></div><div><dt>Interfaces</dt><dd>CAN, UART service port, local display and encoder</dd></div><div><dt>Status</dt><dd>Prepared for low-volume production, 2026</dd></div><div><dt>Services</dt><dd>2.2 Requirements · 2.3 Firmware · 2.1 Protocols</dd></div></dl>
+</div>
+<div class="prose">
+
+<h2>Task</h2>
+<p>Combine local control and operator interaction in one module. The module talks to peripheral controllers, drives and sensors over CAN, and gives service staff direct access to configuration, diagnostics and logs during commissioning and later support.</p>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-vibro-feeder-hmi-control-module.webp" title="Open full size"><img src="../assets/img/projects/case-vibro-feeder-hmi-control-module.webp" alt="HMI and MCU control module with display area, encoder and buttons" loading="lazy"></a></div><figcaption>The control module: display, rotary encoder, buttons, CAN-capable MCU and expansion connectors.</figcaption></figure>
+<h2>What we did</h2>
+<ul>
+<li>Wrote the requirements for operator access, CAN communication, diagnostics and logging, each with a verification method.</li>
+<li>Implemented the menu and parameter firmware: navigation, parameter limits, local control buttons, encoder input.</li>
+<li>Implemented CAN communication with the feeder peripherals and the I/O expansion.</li>
+<li>Added fault detection with status visible from the local menu, plus event, fault and system-state logging for commissioning and troubleshooting.</li>
+</ul>
+<h2>Sample requirements</h2>
+<div class="reqs"><div class="req"><span class="rid">SYS-HMI-010</span><span class="rtext">The module shall provide local operator access to machine setup and operating parameters through the HMI.</span><span class="rver">Verification: functional menu and parameter-access test</span></div><div class="req"><span class="rid">SYS-COM-020</span><span class="rtext">The module shall exchange defined control and status data with feeder peripherals over CAN.</span><span class="rver">Verification: CAN conformance and machine integration test</span></div><div class="req"><span class="rid">SWR-DIA-030</span><span class="rtext">The firmware shall expose detected faults and system-state information through the local diagnostics function.</span><span class="rver">Verification: injected fault and diagnostic display check</span></div><div class="req"><span class="rid">SWR-LOG-040</span><span class="rtext">The firmware shall record defined event, fault and system-state records for commissioning and troubleshooting.</span><span class="rver">Verification: generated event and log retrieval check</span></div></div>
+
+<div class="sep"></div>
+<p class="small muted">Next case: <a href="../case-studies/local-speech-to-document-pipeline.html">Local speech-to-document pipeline</a> · <a href="../services.html">Services</a> · <a href="../contact.html">Discuss a similar task</a></p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>
