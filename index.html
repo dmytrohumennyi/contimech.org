@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>ContiMech — Embedded firmware, protocols and specifications</title>
+<meta name="description" content="ContiMech: embedded firmware (Linux + ROS 2, Zephyr, Alpine Linux), communication protocols, requirements and technical documentation, prototyping and hypothesis checks.">
+<link rel="canonical" href="https://contimech.org/">
+<meta property="og:title" content="ContiMech — Embedded firmware, protocols and specifications">
+<meta property="og:description" content="ContiMech: embedded firmware (Linux + ROS 2, Zephyr, Alpine Linux), communication protocols, requirements and technical documentation, prototyping and hypothesis checks.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/">
+<link rel="preload" href="assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="assets/css/site.css?v=1">
+<link rel="icon" href="assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="home">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="services.html">Services</a><a href="case-studies/index.html">Cases</a><a href="blog/index.html">Notes</a><a href="contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<section class="hero-x" data-hx>
+<div class="hx-media">
+<img class="is-active" src="assets/img/home-slideshow/slide-05.webp" alt="">
+<img src="assets/img/home-slideshow/slide-09.webp" alt="" loading="lazy">
+<img src="assets/img/home-slideshow/slide-12.webp" alt="" loading="lazy">
+<img src="assets/img/home-slideshow/slide-08.webp" alt="" loading="lazy">
+</div>
+<div class="hx-shade"></div>
+<div class="wrap hx-copy">
+<span class="eyebrow">Embedded engineering</span>
+<h1>Firmware, protocols and specifications. Taken to a tested prototype.</h1>
+<p class="hx-lead">A small engineering team for embedded systems that need a clear interface, written requirements and firmware that runs on real hardware.</p>
+<div class="actions"><a class="btn primary" href="services.html">Services</a><a class="btn" href="contact.html">Describe a task</a></div>
+</div>
+<a class="hx-down" href="#p1" aria-label="Scroll to cases"><span></span></a>
+</section>
+<section class="panel-x diagram" id="p1"><div class="px-media"><img src="assets/img/protocols/hmi-cb/07_seq_safestop.svg" alt="" loading="lazy"></div><div class="px-shade"></div><div class="wrap px-copy"><span class="eyebrow">Interface specification · CAN</span><h2>CAN interface for an operator panel and a process controller</h2><p class="px-stat"><b>27.7 ms</b><span>worst-case safe stop against a 50 ms requirement</span></p><a class="btn" href="case-studies/hmi-control-board-communication-protocol.html">View case</a></div></section><section class="panel-x diagram" id="p2"><div class="px-media"><img src="assets/img/telemetry/horizon.svg" alt="" loading="lazy"></div><div class="px-shade"></div><div class="wrap px-copy"><span class="eyebrow">Telemetry specification · RF</span><h2>Telemetry for first-stage hop tests</h2><p class="px-stat"><b>130 km</b><span>with a complete ground archive by requirement</span></p><a class="btn" href="case-studies/first-stage-hop-test-telemetry.html">View case</a></div></section><section class="panel-x" id="p3"><div class="px-media"><img src="assets/img/projects/case-inertial-linux-stack-nda.webp" alt="" loading="lazy"></div><div class="px-shade"></div><div class="wrap px-copy"><span class="eyebrow">Firmware · Alpine Linux · i.MX93</span><h2>Linux inside a compact control stack</h2><p class="px-stat"><b>≤ 4 s</b><span>power-on to application-ready, design target</span></p><a class="btn" href="case-studies/embedded-linux-inertial-control-platform.html">View case</a></div></section><section class="panel-x diagram" id="p4"><div class="px-media"><img src="assets/img/usb-cdc/framing.svg" alt="" loading="lazy"></div><div class="px-shade"></div><div class="wrap px-copy"><span class="eyebrow">Interface specification · USB</span><h2>Driverless USB CDC control interface</h2><p class="px-stat"><b>0 drivers</b><span>COBS framing, CRC-16, idempotent retries</span></p><a class="btn" href="case-studies/usb-cdc-control-link.html">View case</a></div></section><section class="panel-x diagram" id="p5"><div class="px-media"><img src="assets/img/projects/case-aerospace-mechanical-cad-perspective.webp" alt="" loading="lazy"></div><div class="px-shade"></div><div class="wrap px-copy"><span class="eyebrow">Research · Modelling · Prototype</span><h2>Compact rocket platform: models before metal</h2><p class="px-stat"><b>40 cm</b><span>baseline, Simulink models and a prototype before detailed design</span></p><a class="btn" href="case-studies/compact-rocket-platform.html">View case</a></div></section>
+<div class="wrap">
+<section class="section">
+<div class="section-head"><span class="label">Focus</span><h2>Three things we do well</h2></div>
+<div class="cols-3">
+<div class="item i-fw"><h3><i class="t t-fw"></i>Embedded firmware</h3><p>Linux and ROS 2 on application processors, Zephyr on microcontrollers, minimal Alpine Linux images where boot time and footprint matter.</p><a class="more" href="services.html#firmware">Firmware development</a></div>
+<div class="item i-pr"><h3><i class="t t-pr"></i>Communication protocols</h3><p>Message catalogues, framing, timing budgets, E2E protection and failure behaviour, specified so that both ends can be built and tested independently.</p><a class="more" href="services.html#protocols">Protocol engineering</a></div>
+<div class="item i-rq"><h3><i class="t t-rq"></i>System description and requirements</h3><p>Scenarios, architecture, authority and failure boundaries; requirements and interface control documents with a verification method for every requirement.</p><a class="more" href="services.html#requirements">System description and requirements</a></div>
+</div>
+</section>
+
+<section class="section" id="domains">
+<div class="section-head"><span class="label">Domains</span><h2>Where we apply it</h2></div>
+<dl class="rows">
+<div class="row"><dt>Automotive and ECU tooling</dt><dd>Test-bench interfaces and switching, diagnostics, HIL setups, CAN / CAN FD communication, engineering packages for Tier-1 test teams</dd></div>
+<div class="row"><dt>Robotics</dt><dd>ROS 2 nodes and integration, embedded control, simulation scenes, repeatable validation scenarios</dd></div>
+<div class="row"><dt>Industrial automation</dt><dd>Machine HMIs and controllers, production test benches, condition monitoring, equipment modernisation</dd></div>
+<div class="row"><dt>Aerospace testing</dt><dd>Telemetry links, data acquisition, models and test documentation for flight and ground tests</dd></div>
+</dl>
+</section>
+
+<section class="section">
+<div class="section-head"><span class="label"><i class="t t-rs"></i>Method</span><h2>From hypothesis to prototype</h2>
+<p class="muted">Most projects start with an open question. We answer it in this order and leave a document at every step.</p></div>
+<ol class="steps">
+<li><span class="step-no">1</span><h3>Question</h3><p>Write the hypothesis and the acceptance criterion: which result confirms it, which rejects it.</p><span class="out">Problem statement</span></li>
+<li><span class="step-no">2</span><h3>Analysis and model</h3><p>Calculations and a computer model narrow the options before hardware is bought.</p><span class="out">Analysis note, model</span></li>
+<li><span class="step-no">3</span><h3>Prototype</h3><p>The smallest build that can answer the question: board, firmware, bench, fixture.</p><span class="out">Working prototype</span></li>
+<li><span class="step-no">4</span><h3>Verification</h3><p>Measure against the acceptance criterion and record what held and what did not.</p><span class="out">Test report</span></li>
+<li><span class="step-no">5</span><h3>Handover</h3><p>Requirements, ICD, source code and build instructions for the next stage.</p><span class="out">Documentation package</span></li>
+</ol>
+</section>
+
+<section class="section" id="principles">
+<div class="section-head"><span class="label">Principles</span><h2>How we work</h2></div>
+<div class="cols-4">
+<div class="item"><h3>Documentation first</h3><p>Requirements, interfaces and decisions are written down and traceable. The handover package is part of the work, not an afterthought.</p></div>
+<div class="item"><h3>Model before build</h3><p>Simulation and calculation narrow the options before hardware is bought or code is written.</p></div>
+<div class="item"><h3>AI where it is safe</h3><p>Generated drafts, scaffolds and tests from reviewed documents speed up routine work. Everything is reviewed against the specification.</p></div>
+<div class="item"><h3>Handwritten where it matters</h3><p>Code on the safety path, timing-critical logic and drivers is written and reviewed by engineers.</p></div>
+</div>
+</section>
+
+<section class="section" id="ecosystem">
+<div class="section-head"><span class="label">Ecosystem</span><h2>Tools and platforms</h2></div>
+<dl class="rows">
+<div class="row"><dt>Operating systems</dt><dd>Linux (Ubuntu, Debian, Alpine); Windows for host tools and test benches</dd></div>
+<div class="row"><dt>Robotics</dt><dd>ROS 2, ros2_control, MoveIt 2</dd></div>
+<div class="row"><dt>RTOS</dt><dd>Zephyr</dd></div>
+<div class="row"><dt>Languages</dt><dd>C, C++; Python for tooling and tests</dd></div>
+<div class="row"><dt>AI</dt><dd>Whisper (speech to text), Llama-family and other small language models, inference on local hardware</dd></div>
+<div class="row"><dt>Computer vision</dt><dd>YOLO (Ultralytics), OpenCV</dd></div>
+<div class="row"><dt>Modelling</dt><dd>MATLAB / Simulink; QEMU and Renode virtual targets</dd></div>
+<div class="row"><dt>Interfaces</dt><dd>CAN / CAN FD, RS-485, UART, SPI, I²C, Ethernet, USB</dd></div>
+<div class="row"><dt>Build and delivery</dt><dd>Git, Docker, cross-compilation for ARM</dd></div>
+</dl>
+</section>
+
+<section class="section" id="standards">
+<div class="section-head"><span class="label">Standards</span><h2>Standards we work with</h2>
+<p class="muted">We know these standards and write documentation that fits the processes they require. We do not certify products.</p></div>
+<div class="cols-3">
+<div class="item"><h3>Automotive</h3><ul class="std-list">
+<li><span class="std-id">ISO 26262</span><span class="muted">Functional safety</span></li>
+<li><span class="std-id">ISO/SAE 21434</span><span class="muted">Cybersecurity engineering</span></li>
+<li><span class="std-id">Automotive SPICE</span><span class="muted">Process assessment model</span></li>
+<li><span class="std-id">AUTOSAR Classic</span><span class="muted">ECU software architecture</span></li>
+</ul></div>
+<div class="item"><h3>Aerospace (Europe)</h3><ul class="std-list">
+<li><span class="std-id">ECSS-E-ST-40C</span><span class="muted">Space software engineering</span></li>
+<li><span class="std-id">ECSS-Q-ST-80C</span><span class="muted">Software product assurance</span></li>
+<li><span class="std-id">EUROCAE ED-12C / DO-178C</span><span class="muted">Airborne software</span></li>
+</ul></div>
+<div class="item"><h3>Healthcare</h3><ul class="std-list">
+<li><span class="std-id">IEC 62304</span><span class="muted">Medical device software life cycle</span></li>
+<li><span class="std-id">ISO 14971</span><span class="muted">Risk management for medical devices</span></li>
+<li><span class="std-id">ISO 13485</span><span class="muted">Quality management context</span></li>
+</ul></div>
+</div>
+</section>
+
+</div>
+<section class="panel-x contact-x">
+<div class="px-media"><img src="assets/img/mosaic/mosaic-triptych-clean.webp" alt="" loading="lazy"></div><div class="px-shade"></div>
+<div class="wrap px-copy"><span class="eyebrow">Contact</span><h2>Start with the question</h2>
+<p class="px-text">Tell us what the system is, what you need to know or build, what exists already and when you need the answer.</p>
+<div class="actions"><a class="btn primary" href="contact.html">Describe the task</a><span class="mono px-mail">solution@contimech.org</span></div></div>
+</section>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="services.html">Services</a><a href="case-studies/index.html">Cases</a><a href="blog/index.html">Notes</a><a href="contact.html">Contact</a></nav>
+</div>
+</footer>
+<script src="assets/js/site.js?v=1"></script>
+</body>
+</html>

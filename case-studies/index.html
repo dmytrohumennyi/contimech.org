@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cases — ContiMech</title>
+<meta name="description" content="Selected ContiMech engineering cases: communication protocols, embedded Linux, requirements and firmware.">
+<link rel="canonical" href="https://contimech.org/case-studies/index.html">
+<meta property="og:title" content="Cases — ContiMech">
+<meta property="og:description" content="Selected ContiMech engineering cases: communication protocols, embedded Linux, requirements and firmware.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/index.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<figure class="mosaic-band"><img src="../assets/img/mosaic/mosaic-geometric-wall.jpg" alt="" style="object-position:50% 40%"><figcaption>Modernist mosaic</figcaption></figure>
+<div class="page-head"><span class="label">Cases</span><h1>Selected work</h1>
+<p class="lead">Eight examples of the work we focus on: interface specifications for CAN, USB and radio links, system descriptions and requirements, embedded Linux and firmware, and models that answer design questions early.</p>
+<p class="note"><strong>About these cases.</strong> Descriptions are deliberately general. Client names, product identifiers and sensitive values are omitted or changed, and some images are softened. Two cases are public references written on synthetic systems to show our documentation standard; they are marked as such.</p></div>
+<ul class="case-list"><li><a href="../case-studies/hmi-control-board-communication-protocol.html"><figure class=""><img src="../assets/img/protocols/hmi-cb/02_pdu_structure.svg" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-pr"></i>Protocols · Requirements · Analysis</span><h2>CAN interface specification: operator panel and process controller</h2><p>Interface control document excerpt: system description, requirements with verification methods, CAN identifier plan, PDU layout, message catalogue, timing budget, error handling and test matrix.</p></div></a></li><li><a href="../case-studies/usb-cdc-control-link.html"><figure class=""><img src="../assets/img/usb-cdc/architecture.svg" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-pr"></i>Protocols · Firmware · USB</span><h2>USB CDC interface specification: PC and bench controller</h2><p>Interface specification excerpt: system description, requirements, CDC-ACM transport, COBS framing with CRC-16, message catalogue with real byte examples, session state machine, timing and test matrix.</p></div></a></li><li><a href="../case-studies/first-stage-hop-test-telemetry.html"><figure class=""><img src="../assets/img/telemetry/horizon.svg" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-pr"></i>Analysis · Protocols · RF telemetry</span><h2>Telemetry specification for first-stage hop tests at 130 km</h2><p>Specification excerpt for a test-range telemetry downlink: system description, requirements, link budget and radio horizon, transfer frame and virtual channels, five layers against data loss, UML behaviour, test matrix.</p></div></a></li><li><a href="../case-studies/compact-rocket-platform.html"><figure class="photo"><img src="../assets/img/projects/case-aerospace-system-cad-front.webp" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-rs"></i>Modelling · Analysis · Prototype</span><h2>Compact rocket platform: models before metal</h2><p>System baseline, motor-burn and flight models in MATLAB/Simulink, FreeCAD layout and a quick physical prototype for a 40 cm platform: open design questions answered before detailed work.</p></div></a></li><li><a href="../case-studies/embedded-linux-inertial-control-platform.html"><figure class="photo"><img src="../assets/img/projects/case-inertial-linux-stack-nda-thumb.webp" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-fw"></i>Firmware · Alpine Linux · CAN FD</span><h2>Linux compute layer inside a compact control stack</h2><p>Linux services (SSH, logs, configuration, updates) added inside an existing stack on an i.MX93 board with Alpine Linux, while real-time loops stay on the microcontrollers.</p></div></a></li><li><a href="../case-studies/sintering-furnace-requirements.html"><figure class=""><img src="../assets/img/requirements-engineering/sintering-line/zone_profile.svg" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-rq"></i>Requirements · Analysis</span><h2>Requirements baseline for a continuous sintering furnace</h2><p>From process hazards to 68 allocated, verifiable requirements for a furnace with an N₂/H₂ atmosphere. A public reference built on a synthetic line.</p></div></a></li><li><a href="../case-studies/industrial-vibro-feeder-hmi-control-module.html"><figure class="photo"><img src="../assets/img/projects/case-vibro-feeder-hmi-control-module.webp" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-fw"></i>Firmware · CAN · Requirements</span><h2>HMI and control module for an industrial vibratory feeder</h2><p>Local operator menu, CAN communication with feeder peripherals, diagnostics and event logging on one MCU module.</p></div></a></li><li><a href="../case-studies/local-speech-to-document-pipeline.html"><figure class=""><img src="../assets/img/projects/pipeline/lecture-converter-pipeline.svg" alt="" loading="lazy"></figure><div class="body"><span class="tags"><i class="t t-fw"></i>AI · Linux · Prototype</span><h2>Local speech-to-document pipeline</h2><p>Recorded lectures become reviewed course notes: Whisper transcription, structured notes from a small language model, a privacy pass, and publication only after a person approves.</p></div></a></li></ul>
+<div style="height:64px"></div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

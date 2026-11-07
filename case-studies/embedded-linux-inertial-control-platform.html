@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Linux compute layer inside a compact control stack — ContiMech</title>
+<meta name="description" content="Linux services (SSH, logs, configuration, updates) added inside an existing stack on an i.MX93 board with Alpine Linux, while real-time loops stay on the microcontrollers.">
+<link rel="canonical" href="https://contimech.org/case-studies/embedded-linux-inertial-control-platform.html">
+<meta property="og:title" content="Linux compute layer inside a compact control stack — ContiMech">
+<meta property="og:description" content="Linux services (SSH, logs, configuration, updates) added inside an existing stack on an i.MX93 board with Alpine Linux, while real-time loops stay on the microcontrollers.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/embedded-linux-inertial-control-platform.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../case-studies/index.html">Cases</a> / Firmware · Alpine Linux · CAN FD</div>
+<h1>Linux compute layer inside a compact control electronics stack</h1>
+<p class="lead">The customer needed Linux-level services inside an existing compact electronics stack, without attaching an external single-board computer and without moving deterministic control loops into Linux. Images are softened; product details are omitted.</p>
+<dl class="facts"><div><dt>Platform</dt><dd>NXP i.MX93 (Cortex-A55 + Cortex-M33)</dd></div><div><dt>OS</dt><dd>Alpine Linux aarch64, NXP BSP kernel</dd></div><div><dt>Interfaces</dt><dd>CAN FD, GPIO, Ethernet, UART</dd></div><div><dt>Services</dt><dd>2.3 Firmware · 2.2 Requirements</dd></div></dl>
+</div>
+<div class="prose">
+
+<h2>Task</h2>
+<p>The new layer had to do the work of a gateway: exchange commands and status, coordinate peripherals, collect diagnostics. On top of that the customer wanted standard Linux capabilities: SSH service access, persistent logs, file-based configuration and maintainable updates. The board had to fit the existing circular geometry, stay cost-aware, and leave the real-time electronics unchanged.</p>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-inertial-linux-stack-nda.webp" title="Open full size"><img src="../assets/img/projects/case-inertial-linux-stack-nda.webp" alt="Compact circular multi-board electronics stack, softened" loading="lazy"></a></div><figcaption>Target envelope: a layered stack of circular boards. Softened image.</figcaption></figure>
+<h2>What we did</h2>
+<ul>
+<li>Defined a circular compute board around the i.MX93 as one more layer of the stack, with only the memory and interfaces the product needs (1 GB LPDDR4X, 8 GB eMMC, CAN FD, GPIO, Ethernet, service UART).</li>
+<li>Kept Linux supervisory. Sampling, timing-critical control and actuation stay on dedicated microcontrollers and never depend on Linux scheduling.</li>
+<li>Built the I/O service on SocketCAN and libgpiod. ROS 2 / DDS integration stays optional instead of being coupled to the hardware layer.</li>
+<li>Reduced the boot path: no U-Boot delay, device tree trimmed to the used hardware, console off the critical path, application service started before maintenance services. Design target: application-ready in 4 s or less from power-on.</li>
+<li>Designed service access and updates: key-based SSH started after the application, service UART, versioned release bundle with integrity check, A/B system slots and rollback.</li>
+</ul>
+<pre><code>Application service · diagnostics · update manager
+OpenSSH · can-utils · libgpiod · gdbserver
+Alpine Linux aarch64 rootfs (OpenRC)
+Linux kernel + device tree from NXP i.MX BSP
+U-Boot / secure boot chain
+NXP i.MX93 · LPDDR4X · eMMC</code></pre>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-inertial-linux-architecture.svg" title="Open full size"><img src="../assets/img/projects/case-inertial-linux-architecture.svg" alt="Architecture: Linux services around deterministic control" loading="lazy"></a></div><figcaption>Component view. Linux owns service access and orchestration; CAN and GPIO connect it to the microcontroller layer.</figcaption></figure>
+<figure class=""><div class="frame"><a href="../assets/img/projects/case-inertial-linux-sequence.svg" title="Open full size"><img src="../assets/img/projects/case-inertial-linux-sequence.svg" alt="Sequence from Linux application through CAN/GPIO layer to the control MCU" loading="lazy"></a></div><figcaption>Interaction view. A request goes from the Linux service through the I/O layer to the MCU and returns state and diagnostics.</figcaption></figure>
+<h2>Why Linux and not another microcontroller</h2>
+<p>The core behaviour could run on an MCU. SSH, persistent logs, file-based configuration, package deployment and field debugging could not, at least not cleanly. A small application processor with a minimal Alpine userspace gave those features without a GPU, display stack or Wi-Fi module on the bill of materials.</p>
+
+<div class="sep"></div>
+<p class="small muted">Next case: <a href="../case-studies/sintering-furnace-requirements.html">Requirements baseline for a continuous sintering furnace</a> · <a href="../services.html">Services</a> · <a href="../contact.html">Discuss a similar task</a></p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

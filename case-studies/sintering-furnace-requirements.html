@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Requirements baseline for a continuous sintering furnace — ContiMech</title>
+<meta name="description" content="From process hazards to 68 allocated, verifiable requirements for a furnace with an N₂/H₂ atmosphere. A public reference built on a synthetic line.">
+<link rel="canonical" href="https://contimech.org/case-studies/sintering-furnace-requirements.html">
+<meta property="og:title" content="Requirements baseline for a continuous sintering furnace — ContiMech">
+<meta property="og:description" content="From process hazards to 68 allocated, verifiable requirements for a furnace with an N₂/H₂ atmosphere. A public reference built on a synthetic line.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://contimech.org/case-studies/sintering-furnace-requirements.html">
+<link rel="preload" href="../assets/fonts/barlow-latin-600-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="../assets/css/site.css?v=1">
+<link rel="icon" href="../assets/img/favicon.svg" type="image/svg+xml">
+</head>
+<body class="">
+<header class="site-header">
+<div class="wrap">
+<a class="brand" href="../index.html"><span class="brand-name">ContiMech</span><span class="brand-sub">Embedded engineering</span></a>
+<nav class="nav" aria-label="Main"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</header>
+<main>
+<div class="wrap">
+<div class="page-head">
+<div class="crumbs"><a href="../case-studies/index.html">Cases</a> / Requirements · Analysis</div>
+<h1>Requirements baseline for a continuous sintering furnace</h1>
+<p class="lead">An anonymised reconstruction for a synthetic powder-metallurgy line: a continuous sintering furnace with an N₂/H₂ protective atmosphere. It shows how we go from operating scenarios and hazards to allocated system, hardware and software requirements, each with a verification method.</p>
+<dl class="facts"><div><dt>Type</dt><dd>Public reference, synthetic line</dd></div><div><dt>Scope</dt><dd>68 requirements: system, HW, SW</dd></div><div><dt>Methods</dt><dd>Operating scenarios, HAZOP, safety decomposition, verification plan</dd></div><div><dt>Services</dt><dd>2.2 Requirements · 1.2 Analysis</dd></div></dl>
+</div>
+<div class="prose">
+
+<h2>Task</h2>
+<p>The starting point was a business problem: scrap rates that varied from week to week. The analysis followed one chain from that problem through process observability and atmosphere hazards to system requirements, their allocation to hardware and software, and the tests that would prove them.</p>
+<figure class=""><div class="frame"><a href="../assets/img/requirements-engineering/sintering-line/05_trace_tree.svg" title="Open full size"><img src="../assets/img/requirements-engineering/sintering-line/05_trace_tree.svg" alt="Trace from business problem to requirements" loading="lazy"></a></div><figcaption>One chain from the business problem to requirements. The same gap explained both the scrap and a hazard.</figcaption></figure>
+<h2>What the requirements changed</h2>
+<p>Several findings changed the design, not just the paperwork:</p>
+<ul>
+<li>The original interlock proved temperature only in the hottest zone, where the hazard is least present. Atmosphere conditions are now proven per zone below the ignition threshold.</li>
+<li>The emergency stop closed the normally-closed atmosphere valves and cut protective gas while the muffle was hot and contained hydrogen. Stop functions were separated.</li>
+<li>Belt motion was sensed on the motor shaft, which cannot see a slipping coupling. The encoder moves to the driven pulley.</li>
+<li>Process records were attached to a batch by wall-clock time at the exit, mixing up conditions from the wrong hour. Records are now associated by belt position and dwell time.</li>
+</ul>
+<figure class=""><div class="frame"><a href="../assets/img/requirements-engineering/sintering-line/zone_profile.svg" title="Open full size"><img src="../assets/img/requirements-engineering/sintering-line/zone_profile.svg" alt="Temperature profile along the furnace against the safe ignition threshold" loading="lazy"></a></div><figcaption>Temperature along the muffle against the safe ignition threshold. Below 750 °C an explosive mixture can form and persist.</figcaption></figure>
+<figure class=""><div class="frame"><a href="../assets/img/requirements-engineering/sintering-line/02_estop_separation.svg" title="Open full size"><img src="../assets/img/requirements-engineering/sintering-line/02_estop_separation.svg" alt="Separation of the emergency stop from atmosphere safe state" loading="lazy"></a></div><figcaption>Stop function separation. Removing drive power must not remove the means of keeping the atmosphere safe.</figcaption></figure>
+<h2>Sample requirements</h2>
+<div class="reqs"><div class="req"><span class="rid">SNTR-SYS-ATM-020</span><span class="rtext">The system shall prove the atmosphere enabling condition separately for each zone whose nominal operating temperature is below the safe ignition temperature.</span><span class="rver">Verification: zonal interlock test</span></div><div class="req"><span class="rid">SNTR-SYS-SAF-020</span><span class="rtext">Actuation of the emergency stop shall not remove the means of maintaining the atmosphere safe state.</span><span class="rver">Verification: emergency-stop test at temperature with atmosphere state monitored</span></div><div class="req"><span class="rid">SNTR-HWR-SAF-020</span><span class="rtext">Belt motion shall be sensed by an encoder on the driven pulley, not on the motor shaft.</span><span class="rver">Verification: inspection and coupling-release fault injection</span></div><div class="req"><span class="rid">SNTR-SWR-REC-010</span><span class="rtext">The software shall associate recorded process conditions with a batch by belt position and dwell time, not by wall-clock time at the exit.</span><span class="rver">Verification: batch transit and recording correlation test</span></div></div>
+<figure class=""><div class="frame"><a href="../assets/img/requirements-engineering/sintering-line/batch_timing.svg" title="Open full size"><img src="../assets/img/requirements-engineering/sintering-line/batch_timing.svg" alt="Batch transit timing through the furnace" loading="lazy"></a></div><figcaption>Why clock-based records fail: the conditions that determined batch A happened 52 minutes before it left the furnace.</figcaption></figure>
+
+<div class="sep"></div>
+<p class="small muted">Next case: <a href="../case-studies/industrial-vibro-feeder-hmi-control-module.html">HMI and control module for an industrial vibratory feeder</a> · <a href="../services.html">Services</a> · <a href="../contact.html">Discuss a similar task</a></p>
+</div>
+</div>
+</main>
+<footer class="site-footer">
+<div class="wrap">
+<span>© 2026 ContiMech · solution@contimech.org</span>
+<nav aria-label="Footer"><a href="../services.html">Services</a><a href="../case-studies/index.html" aria-current="page">Cases</a><a href="../blog/index.html">Notes</a><a href="../contact.html">Contact</a></nav>
+</div>
+</footer>
+
+</body>
+</html>

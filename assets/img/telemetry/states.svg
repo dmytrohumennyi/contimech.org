@@ -1,0 +1,53 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 960 470" width="960" height="470" font-family="IBM Plex Sans, Segoe UI, Roboto, Arial, sans-serif">
+<title>UML state machine of the onboard downlink scheduler (illustrative)</title>
+<rect width="960" height="470" fill="#ffffff"/>
+<text x="40" y="36" font-size="12" fill="#5a6072" font-family="IBM Plex Mono, Consolas, monospace" letter-spacing="1">«STATE MACHINE» DOWNLINK SCHEDULER</text>
+<defs><marker id="a" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 Z" fill="#141a2b"/></marker></defs>
+<circle cx="70" cy="140" r="9" fill="#141a2b"/>
+<g fill="#ffffff" stroke="#141a2b" stroke-width="1.2">
+<rect x="130" y="100" width="210" height="84" rx="14"/>
+<rect x="470" y="100" width="210" height="84" rx="14"/>
+<rect x="470" y="290" width="210" height="84" rx="14"/>
+<rect x="130" y="290" width="210" height="84" rx="14"/>
+<rect x="740" y="190" width="190" height="84" rx="14"/>
+</g>
+<circle cx="835" cy="420" r="11" fill="none" stroke="#141a2b" stroke-width="1.2"/><circle cx="835" cy="420" r="6" fill="#141a2b"/>
+<g font-size="13" fill="#141a2b">
+<text x="235" y="126" text-anchor="middle" font-weight="600">LIVE</text>
+<text x="146" y="150" font-size="12" fill="#5a6072">send classes A, B, C</text>
+<text x="146" y="168" font-size="12" fill="#5a6072">record all</text>
+<text x="575" y="126" text-anchor="middle" font-weight="600">DEGRADED</text>
+<text x="486" y="150" font-size="12" fill="#5a6072">send A (twice), B; drop C</text>
+<text x="486" y="168" font-size="12" fill="#5a6072">record all</text>
+<text x="575" y="316" text-anchor="middle" font-weight="600">LOSS OF SIGNAL</text>
+<text x="486" y="340" font-size="12" fill="#5a6072">keep transmitting A</text>
+<text x="486" y="358" font-size="12" fill="#5a6072">record all, mark gap start</text>
+<text x="235" y="316" text-anchor="middle" font-weight="600">RECOVERY</text>
+<text x="146" y="340" font-size="12" fill="#5a6072">live A, B + backfill of gap</text>
+<text x="146" y="358" font-size="12" fill="#5a6072">from recorder, oldest first</text>
+<text x="835" y="216" text-anchor="middle" font-weight="600">POST-FLIGHT DUMP</text>
+<text x="756" y="240" font-size="12" fill="#5a6072">full recorder image</text>
+<text x="756" y="258" font-size="12" fill="#5a6072">over ground link</text>
+</g>
+<g stroke="#141a2b" stroke-width="1.2" fill="none" marker-end="url(#a)">
+<path d="M79 140 H128"/>
+<path d="M340 128 H468"/>
+<path d="M470 158 H342"/>
+<path d="M600 184 V288"/>
+<path d="M470 332 H342"/>
+<path d="M235 290 V186"/>
+<path d="M680 142 Q720 142 760 188"/>
+<path d="M835 274 V407"/>
+</g>
+<g font-size="11.5" fill="#141a2b" font-family="IBM Plex Mono, Consolas, monospace">
+<text x="404" y="120" text-anchor="middle">[margin &lt; M₁]</text>
+<text x="404" y="176" text-anchor="middle">[margin &gt; M₂]</text>
+<text x="608" y="230">[no frame lock</text>
+<text x="608" y="246"> &gt; T_los]</text>
+<text x="404" y="324" text-anchor="middle">[lock regained]</text>
+<text x="243" y="236">[backlog = 0]</text>
+<text x="700" y="172">[landed]</text>
+<text x="845" y="345">[dump verified]</text>
+</g>
+<text x="40" y="452" font-size="12" fill="#5a6072">[landed] is accepted from every state; M₂ &gt; M₁ gives hysteresis so the scheduler does not oscillate at the margin edge.</text>
+</svg>
